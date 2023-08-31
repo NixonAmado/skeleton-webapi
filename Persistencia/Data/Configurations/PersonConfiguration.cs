@@ -39,20 +39,21 @@ namespace Persistencia.Data.Configurations;
             .HasMany(p => p.ClassRooms)
             .WithMany(p => p.Persons)
             .UsingEntity<Registration>(
-                j => j 
-                    .HasOne(pt => pt.Person)
-                    .WithMany(t => t.Registrations)
-                    .HasForeignKey(pt => pt.IdPersonFk),
 
                 j => j
                 .HasOne(pt => pt.ClassRoom)
                 .WithMany(p => p.Registrations)
                 .HasForeignKey(pt => pt.IdClassRoomFk),
 
+                j => j 
+                    .HasOne(pt => pt.Person)
+                    .WithMany(t => t.Registrations)
+                    .HasForeignKey(pt => pt.IdPersonFk),
+
+
                 j => j.HasKey(t => new{t.IdPersonFk, t.IdClassRoomFk})                
             );
 
+            
         }
-
-  
 }

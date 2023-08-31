@@ -20,39 +20,24 @@ namespace Persistencia.Data.Configurations;
             .HasMaxLength(3)
             .HasColumnType("int");        
 
-            builder.Property(p => p.Gender)
-            .IsRequired()
-            .HasMaxLength(15);//male//female//undefined
-
-            builder.HasOne(p => p.Gender)
-            .WithMany(p => p.ClassRooms)
-            .HasForeignKey(p => p.IdGenderFk);            
-        
-            builder.HasOne(p => p.Country)
-            .WithMany(p => p.ClassRooms)
-            .HasForeignKey(p => p.IdCountryFk);
-
-            builder.HasOne(p => p.ClassRoomType)
-            .WithMany(p => p.ClassRooms)
-            .HasForeignKey(p => p.IdClassRoomTypeFk);
-
             builder
-            .HasMany(p => p.ClassRooms)
+            .HasMany(p => p.Persons)
             .WithMany(p => p.ClassRooms)
-            .UsingEntity<Registration>(
-                j => j 
-                    .HasOne(pt => pt.ClassRoom)
-                    .WithMany(t => t.Registrations)
-                    .HasForeignKey(pt => pt.IdClassRoomFk),
+            .UsingEntity<TrainerClassRoom>(
 
                 j => j
-                .HasOne(pt => pt.ClassRoom)
-                .WithMany(p => p.Registrations)
-                .HasForeignKey(pt => pt.IdClassRoomFk),
+                .HasOne(pt => pt.Person)
+                .WithMany(p => p.TrainerClassRooms)
+                .HasForeignKey(pt => pt.IdPersonFk),
 
-                j => j.HasKey(t => new{t.IdClassRoomFk, t.IdClassRoomFk})                
+
+                j => j 
+                    .HasOne(pt => pt.ClassRoom)
+                    .WithMany(t => t.TrainerClassRooms)
+                    .HasForeignKey(pt => pt.IdClassRoomFk),
+
+                j => j.HasKey(t => new{t.IdPersonFk, t.IdClassRoomFk})                
             );
-
         }
 
   

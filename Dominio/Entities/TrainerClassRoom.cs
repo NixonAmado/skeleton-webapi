@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entities
 {
-    public class TrainerClassRoom :  BaseEntity
+    public class TrainerClassRoom 
     {
         public Person Person { get; set; }
         public int IdPersonFk { get; set; }
