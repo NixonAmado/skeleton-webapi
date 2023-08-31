@@ -15,6 +15,7 @@ namespace Dominio.Entities
         public int IdCountryFk { get; set; }
         public PersonType PersonType { get; set;}
         public int IdPersonTypeFk { get; set; }
-        public ClassRoom
+        public ICollection<ClassRoom> ClassRooms { get; set; }
+        public ICollection<Registration> Registrations { get; set; } = new HashSet<Registration>();        
     }
 }
