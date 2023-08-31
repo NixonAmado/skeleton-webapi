@@ -18,11 +18,7 @@ namespace Persistencia.Data.Configurations;
             builder.Property(p => p.Surname)
             .IsRequired()
             .HasMaxLength(20);        
-
-            builder.Property(p => p.Gender)
-            .IsRequired()
-            .HasMaxLength(15);//male//female//undefined
-
+            
             builder.HasOne(p => p.Gender)
             .WithMany(p => p.Persons)
             .HasForeignKey(p => p.IdGenderFk);            

@@ -12,6 +12,5 @@ namespace Persistencia.Data.Configurations;
             builder.Property(p => p.CountryName )
             .IsRequired()
             .HasMaxLength(30);
-
         }
     }

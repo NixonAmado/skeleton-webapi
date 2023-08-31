@@ -9,12 +9,12 @@ namespace Dominio.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public Gender Gender { get; set;}
         public int IdGenderFk { get; set; }
-        public Country Country { get; set;}
+        public Gender Gender { get; set;}
         public int IdCountryFk { get; set; }
-        public PersonType PersonType { get; set;}
+        public Country Country { get; set;}
         public int IdPersonTypeFk { get; set; }
+        public PersonType PersonType { get; set;}
         public ICollection<ClassRoom> ClassRooms { get; set; }
         public ICollection<Registration> Registrations { get; set; } = new HashSet<Registration>();        
         public ICollection<TrainerClassRoom> TrainerClassRooms { get; set; } = new HashSet <TrainerClassRoom>();
