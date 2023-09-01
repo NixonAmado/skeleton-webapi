@@ -158,7 +158,7 @@ namespace Persistencia.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Registrations",
+                name: "Registration",
                 columns: table => new
                 {
                     IdPersonFk = table.Column<int>(type: "int", nullable: false),
@@ -167,15 +167,15 @@ namespace Persistencia.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registrations", x => new { x.IdPersonFk, x.IdClassRoomFk });
+                    table.PrimaryKey("PK_Registration", x => new { x.IdClassRoomFk, x.IdPersonFk });
                     table.ForeignKey(
-                        name: "FK_Registrations_ClassRoom_IdClassRoomFk",
+                        name: "FK_Registration_ClassRoom_IdClassRoomFk",
                         column: x => x.IdClassRoomFk,
                         principalTable: "ClassRoom",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Registrations_Person_IdPersonFk",
+                        name: "FK_Registration_Person_IdPersonFk",
                         column: x => x.IdPersonFk,
                         principalTable: "Person",
                         principalColumn: "Id",
@@ -229,9 +229,9 @@ namespace Persistencia.Data.Migrations
                 column: "IdStateFk");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registrations_IdClassRoomFk",
-                table: "Registrations",
-                column: "IdClassRoomFk");
+                name: "IX_Registration_IdPersonFk",
+                table: "Registration",
+                column: "IdPersonFk");
 
             migrationBuilder.CreateIndex(
                 name: "IX_State_IdCountryFk",
@@ -251,7 +251,7 @@ namespace Persistencia.Data.Migrations
                 name: "Region");
 
             migrationBuilder.DropTable(
-                name: "Registrations");
+                name: "Registration");
 
             migrationBuilder.DropTable(
                 name: "TrainerClassRooms");

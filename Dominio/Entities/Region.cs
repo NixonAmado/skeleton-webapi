@@ -10,5 +10,6 @@ namespace Dominio.Entities
         public string RegionName { get; set; }
         public int IdStateFk  { get; set; }
         public State State { get; set; }
+        public ICollection<Person> Persons { get; set; }
     }
 }

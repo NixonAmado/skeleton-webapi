@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.ConfigureCors();
+builder.Services.ConfigureCors();// -Se agrega el la configuracion del cors
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddAplicationServices();
 builder.Services.AddSwaggerGen();
@@ -31,9 +31,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+//app => midware
 app.UseHttpsRedirection();
-app.UseCors("CorsPolicy");
+app.UseCors("CorsPolicy"); //- le decimos que use el cors "CorsPolicy"
 app.UseAuthorization();
 
 app.MapControllers();

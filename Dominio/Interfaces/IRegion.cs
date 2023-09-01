@@ -1,7 +1,7 @@
 using Dominio.Entities;
 namespace Dominio.interfaces;
 
-interface IRegion : IGenericRepository<Region>
+public interface IRegion : IGenericRepository<Region>
 {
     
 }

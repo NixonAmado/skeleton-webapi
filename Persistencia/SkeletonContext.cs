@@ -12,7 +12,6 @@ public class SkeletonContext : DbContext
     public SkeletonContext(DbContextOptions<SkeletonContext> options) : base(options) 
     {
     }
-
     public DbSet<Person> Persons { get; set; }
     public DbSet<Gender> Genders { get; set; }
     public DbSet<PersonType> PersonTypes { get; set; }
@@ -32,5 +31,9 @@ public class SkeletonContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
+    internal object Include(Func<object, object> value)
+    {
+        throw new NotImplementedException();
+    }
 }
 

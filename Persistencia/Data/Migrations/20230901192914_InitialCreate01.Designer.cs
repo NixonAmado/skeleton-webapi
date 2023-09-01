@@ -10,7 +10,7 @@ using Persistencia.Data;
 namespace Persistencia.Data.Migrations
 {
     [DbContext(typeof(SkeletonContext))]
-    [Migration("20230831193101_InitialCreate01")]
+    [Migration("20230901192914_InitialCreate01")]
     partial class InitialCreate01
     {
         /// <inheritdoc />
@@ -148,20 +148,20 @@ namespace Persistencia.Data.Migrations
 
             modelBuilder.Entity("Dominio.Entities.Registration", b =>
                 {
-                    b.Property<int>("IdPersonFk")
+                    b.Property<int>("IdClassRoomFk")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdClassRoomFk")
+                    b.Property<int>("IdPersonFk")
                         .HasColumnType("int");
 
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("IdPersonFk", "IdClassRoomFk");
+                    b.HasKey("IdClassRoomFk", "IdPersonFk");
 
-                    b.HasIndex("IdClassRoomFk");
+                    b.HasIndex("IdPersonFk");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Registration", (string)null);
                 });
 
             modelBuilder.Entity("Dominio.Entities.State", b =>

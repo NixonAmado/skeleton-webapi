@@ -1,7 +1,7 @@
 using Dominio.Entities;
 namespace Dominio.interfaces;
 
-interface IPerson : IGenericRepository<Person>
+public interface IPerson : IGenericRepository<Person>
 {
     
 }

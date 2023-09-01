@@ -1,7 +1,7 @@
 using Dominio.Entities;
 namespace Dominio.interfaces;
 
-interface IState : IGenericRepository<State>
+public interface IState : IGenericRepository<State>
 {
     
 }

@@ -31,6 +31,12 @@ namespace Persistencia.Data.Configurations;
             .WithMany(p => p.Persons)
             .HasForeignKey(p => p.IdPersonTypeFk);
 
+
+            builder.HasOne(p => p.Region)
+            .WithMany(p => p.Persons)
+            .HasForeignKey(p => p.IdRegionFk);
+
+
             builder
             .HasMany(p => p.ClassRooms)
             .WithMany(p => p.Persons)
