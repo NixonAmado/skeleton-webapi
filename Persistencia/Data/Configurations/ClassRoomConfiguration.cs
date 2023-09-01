@@ -20,24 +20,7 @@ namespace Persistencia.Data.Configurations;
             .HasMaxLength(3)
             .HasColumnType("int");        
 
-            builder
-            .HasMany(p => p.Persons)
-            .WithMany(p => p.ClassRooms)
-            .UsingEntity<TrainerClassRoom>(
-
-                j => j
-                .HasOne(pt => pt.Person)
-                .WithMany(p => p.TrainerClassRooms)
-                .HasForeignKey(pt => pt.IdPersonFk),
-
-
-                j => j 
-                    .HasOne(pt => pt.ClassRoom)
-                    .WithMany(t => t.TrainerClassRooms)
-                    .HasForeignKey(pt => pt.IdClassRoomFk),
-
-                j => j.HasKey(t => new{t.IdPersonFk, t.IdClassRoomFk})                
-            );
+        
         }
 
   

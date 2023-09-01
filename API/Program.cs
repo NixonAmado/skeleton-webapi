@@ -1,5 +1,10 @@
+using API.Controllers;
 using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Persistencia.Data;
+
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +14,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.ConfigureCors();
 builder.Services.AddEndpointsApiExplorer();
-
+//builder.Services.AddAplicationServices();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<SkeletonContext>(options =>

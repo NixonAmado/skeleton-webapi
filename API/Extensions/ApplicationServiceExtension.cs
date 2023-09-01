@@ -1,8 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+//using Dominio.Interfaces;
+//using Infrastructure.Repository;
+//using Infrastructure.UnitWork;
+using Microsoft.AspNetCore.Mvc;
+//falta una dependency
 
+using Microsoft.Extensions.DependencyInjection;
 namespace API.Controllers;
     public static class ApplicationServiceExtension
     {
@@ -10,7 +12,7 @@ namespace API.Controllers;
         services.AddCors(options =>
             options.AddPolicy("CorsPolicy", builder =>
             builder.AllowAnyOrigin()
-            .AllowAnyMethods()
+            .AllowAnyMethod()
             .AllowAnyHeader()
             )
         );

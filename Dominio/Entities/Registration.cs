@@ -9,9 +9,8 @@ namespace Dominio.Entities
     {
         public Person Person { get; set; }
         public int IdPersonFk { get; set; }
-        public ClassRoom ClassRoom { get; set; }
         public int IdClassRoomFk { get; set; }
-
+        public ClassRoom ClassRoom { get; set; }
 
     }
 }

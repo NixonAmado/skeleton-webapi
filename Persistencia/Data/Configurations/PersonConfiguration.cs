@@ -34,16 +34,16 @@ namespace Persistencia.Data.Configurations;
             builder
             .HasMany(p => p.ClassRooms)
             .WithMany(p => p.Persons)
-            .UsingEntity<Registration>(
+            .UsingEntity<TrainerClassRoom>(
 
                 j => j
                 .HasOne(pt => pt.ClassRoom)
-                .WithMany(p => p.Registrations)
+                .WithMany(p => p.TrainerClassRooms)
                 .HasForeignKey(pt => pt.IdClassRoomFk),
 
                 j => j 
                     .HasOne(pt => pt.Person)
-                    .WithMany(t => t.Registrations)
+                    .WithMany(t => t.TrainerClassRooms)
                     .HasForeignKey(pt => pt.IdPersonFk),
 
 
