@@ -7,8 +7,9 @@ using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
-namespace Persistencia.Repository
-{
+namespace Aplicacion.Repository;
+
+
     public class GenderRepository : GenericRepository<Gender>, IGender
     {
         protected readonly SkeletonContext _context;
@@ -24,4 +25,9 @@ namespace Persistencia.Repository
             .ToListAsync();
         }
     }
-}
+        // public override async Task<Gender> GetByIdAsync(int id)
+        // {
+        //     return await _context.Genders
+        //     .Include( p => p.Registrations)
+        //     .FirstOrDefaultAsync( p => p.Id ==id);
+        // }

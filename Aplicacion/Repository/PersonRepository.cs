@@ -7,8 +7,8 @@ using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
-namespace Persistencia.Repository
-{
+namespace Aplicacion.Repository;
+
     public class PersonRepository : GenericRepository<Person>, IPerson
     {
         private readonly SkeletonContext _context;
@@ -20,17 +20,16 @@ namespace Persistencia.Repository
         public override async Task<IEnumerable<Person>> GetAllAsync()
         {
             return await _context.Persons
-            .Include( p=> p.ClassRooms)
+            .Include( p=> p.Registrations)
             .ToListAsync();
         }
 
         public override async Task<Person> GetByIdAsync(int id)
         {
             return await _context.Persons
-            .Include( p => p.ClassRooms)
+            .Include( p => p.Registrations)
             .FirstOrDefaultAsync( p => p.Id ==id);
         }
 
 
     }
-}

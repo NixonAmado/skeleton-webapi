@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Dominio.Entities;
 using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
-
-namespace Persistencia.Repository
-{
+namespace Aplicacion.Repository;
     public class StateRepository : GenericRepository<State>, IState
     {
         private readonly SkeletonContext _context;
@@ -20,17 +15,15 @@ namespace Persistencia.Repository
         public override async Task<IEnumerable<State>> GetAllAsync()
         {
             return await _context.States
-            .Include( p=> p.Persons)
+            .Include( p => p.Regions)
             .ToListAsync();
         }
 
         public override async Task<State> GetByIdAsync(int id)
         {
             return await _context.States
-            .Include( p => p.Persons)
+            .Include( p => p.Regions)
             .FirstOrDefaultAsync( p => p.Id ==id);
         }
 
-
     }
-}

@@ -4,7 +4,7 @@ using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
-namespace Persistencia.Repository;
+namespace Aplicacion.Repository;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
 {

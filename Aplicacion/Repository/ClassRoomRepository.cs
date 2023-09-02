@@ -7,8 +7,7 @@ using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
-namespace Persistencia.Repository;
-
+namespace Aplicacion.Repository;
     public class ClassRoomRepository : GenericRepository<ClassRoom>, IClassRoom
     {
         private readonly SkeletonContext _context;

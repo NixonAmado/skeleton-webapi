@@ -98,44 +98,6 @@ namespace Persistencia.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Person",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Surname = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    IdGenderFk = table.Column<int>(type: "int", nullable: false),
-                    IdCountryFk = table.Column<int>(type: "int", nullable: false),
-                    IdPersonTypeFk = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Person", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Person_Country_IdCountryFk",
-                        column: x => x.IdCountryFk,
-                        principalTable: "Country",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Person_Gender_IdGenderFk",
-                        column: x => x.IdGenderFk,
-                        principalTable: "Gender",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Person_PersonType_IdPersonTypeFk",
-                        column: x => x.IdPersonTypeFk,
-                        principalTable: "PersonType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Region",
                 columns: table => new
                 {
@@ -152,6 +114,50 @@ namespace Persistencia.Data.Migrations
                         name: "FK_Region_State_IdStateFk",
                         column: x => x.IdStateFk,
                         principalTable: "State",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Person",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Surname = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IdGenderFk = table.Column<int>(type: "int", nullable: false),
+                    IdPersonTypeFk = table.Column<int>(type: "int", nullable: false),
+                    IdRegionFk = table.Column<int>(type: "int", nullable: false),
+                    CountryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Person", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Person_Country_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Country",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Person_Gender_IdGenderFk",
+                        column: x => x.IdGenderFk,
+                        principalTable: "Gender",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Person_PersonType_IdPersonTypeFk",
+                        column: x => x.IdPersonTypeFk,
+                        principalTable: "PersonType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Person_Region_IdRegionFk",
+                        column: x => x.IdRegionFk,
+                        principalTable: "Region",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -209,9 +215,9 @@ namespace Persistencia.Data.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person_IdCountryFk",
+                name: "IX_Person_CountryId",
                 table: "Person",
-                column: "IdCountryFk");
+                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person_IdGenderFk",
@@ -222,6 +228,11 @@ namespace Persistencia.Data.Migrations
                 name: "IX_Person_IdPersonTypeFk",
                 table: "Person",
                 column: "IdPersonTypeFk");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_IdRegionFk",
+                table: "Person",
+                column: "IdRegionFk");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Region_IdStateFk",
@@ -248,16 +259,10 @@ namespace Persistencia.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Region");
-
-            migrationBuilder.DropTable(
                 name: "Registration");
 
             migrationBuilder.DropTable(
                 name: "TrainerClassRooms");
-
-            migrationBuilder.DropTable(
-                name: "State");
 
             migrationBuilder.DropTable(
                 name: "ClassRoom");
@@ -266,13 +271,19 @@ namespace Persistencia.Data.Migrations
                 name: "Person");
 
             migrationBuilder.DropTable(
-                name: "Country");
-
-            migrationBuilder.DropTable(
                 name: "Gender");
 
             migrationBuilder.DropTable(
                 name: "PersonType");
+
+            migrationBuilder.DropTable(
+                name: "Region");
+
+            migrationBuilder.DropTable(
+                name: "State");
+
+            migrationBuilder.DropTable(
+                name: "Country");
         }
     }
 }

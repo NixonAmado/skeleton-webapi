@@ -16,5 +16,7 @@ namespace Persistencia.Data.Configurations;
             builder.HasOne(p => p.State)
             .WithMany(p => p.Regions)
             .HasForeignKey(p => p.IdStateFk);
+
+        
         }
     }

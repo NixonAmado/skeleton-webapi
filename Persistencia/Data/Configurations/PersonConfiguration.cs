@@ -22,15 +22,10 @@ namespace Persistencia.Data.Configurations;
             builder.HasOne(p => p.Gender)
             .WithMany(p => p.Persons)
             .HasForeignKey(p => p.IdGenderFk);            
-        
-            builder.HasOne(p => p.Country)
-            .WithMany(p => p.Persons)
-            .HasForeignKey(p => p.IdCountryFk);
 
             builder.HasOne(p => p.PersonType)
             .WithMany(p => p.Persons)
             .HasForeignKey(p => p.IdPersonTypeFk);
-
 
             builder.HasOne(p => p.Region)
             .WithMany(p => p.Persons)

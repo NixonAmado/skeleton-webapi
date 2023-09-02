@@ -1,7 +1,9 @@
 //using Dominio.Interfaces;
 //using Infrastructure.Repository;
 //using Infrastructure.UnitWork;
+using Aplicacion.UnitOfWork;
 using AspNetCoreRateLimit;
+using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 //falta una dependency
 
@@ -17,7 +19,10 @@ namespace API.Controllers;
             .AllowAnyHeader()
             )
         );
-
+        public static void AddAplicationServices(this IServiceCollection services)
+        {
+           services.AddScoped<IUnitOfWork, UnitOfWork>();
+        }
         public static void ConfigureRateLimiting(this IServiceCollection services) 
         {
             services.AddMemoryCache();

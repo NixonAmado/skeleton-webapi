@@ -3,8 +3,9 @@ using Dominio.interfaces;
 using Microsoft.EntityFrameworkCore;
 using Persistencia.Data;
 
-namespace Persistencia.Repository
-{
+
+namespace Aplicacion.Repository;
+
     public class CountryRepository : GenericRepository<Country>,ICountry
     {
         private readonly SkeletonContext _context;
@@ -27,4 +28,3 @@ namespace Persistencia.Repository
             .FirstOrDefaultAsync(p => p.Id == id);
         } 
     }
-}
