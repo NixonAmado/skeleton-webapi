@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Dominio.Entities;
 
 namespace API.Controllers;
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
 
 public class CountryController : BaseController
 {
@@ -19,6 +21,7 @@ public class CountryController : BaseController
     }
 
     [HttpGet]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<CountryDto>>> Get()
@@ -26,6 +29,17 @@ public class CountryController : BaseController
         var Country = await unitOfWork.Countries.GetAllAsync();
         return mapper.Map<List<CountryDto>>(Country);
     }
+
+    [HttpGet]
+    [MapToApiVersion("1.1")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IEnumerable<CountryDto>>> Get11()
+    {
+        var Country = await unitOfWork.Countries.GetAllAsync();
+        return mapper.Map<List<CountryDto>>(Country);
+    }
+
 
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]

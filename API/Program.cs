@@ -11,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.RespectBrowserAcceptHeader = true;
+}).AddXmlSerializerFormatters();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.ConfigureCors();// -Se agrega el la configuracion del cors
 builder.Services.AddAutoMapper(Assembly.GetEntryAssembly());
@@ -19,7 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAplicationServices();
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureRateLimiting();
-//builder.Services.ConfigureVersioning();  
+builder.Services.ConfigureApiVersioning();  
 builder.Services.AddDbContext<SkeletonContext>(options =>
 {
     string connectionString = builder.Configuration.GetConnectionString("ConexMysql");
