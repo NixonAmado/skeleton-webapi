@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using Dominio.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,11 +25,6 @@ public class SkeletonContext : DbContext
         
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
-
-    internal object Include(Func<object, object> value)
-    {
-        throw new NotImplementedException();
     }
 }
 

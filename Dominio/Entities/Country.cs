@@ -9,7 +9,5 @@ namespace Dominio.Entities
     {
         public string CountryName { get; set; }
         public ICollection <State> States { get; set; }
-        public ICollection <Person> Persons { get; set; }
-
     }
 }

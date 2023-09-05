@@ -6,6 +6,4 @@ namespace API.Dtos;
         public int Id { get; set; }
         public string CountryName { get; set; }
         public ICollection <StateDto> States { get; set; }
-        public ICollection <PersonDto> Persons { get; set; }
-
     }

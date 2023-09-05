@@ -4,6 +4,8 @@ using AutoMapper;
 using Dominio.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Dominio.Entities;
+using API.Helpers;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace API.Controllers;
 [ApiVersion("1.0")]
@@ -34,10 +36,11 @@ public class CountryController : BaseController
     [MapToApiVersion("1.1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<CountryDto>>> Get11()
+    public async Task<ActionResult<Pager<CountryDto>>> Get11([FromQuery] Params countryParams)
     {
-        var Country = await unitOfWork.Countries.GetAllAsync();
-        return mapper.Map<List<CountryDto>>(Country);
+        var Country = await unitOfWork.Countries.GetAllAsync(countryParams.PageIndex,countryParams.PageSize,countryParams.Search);
+        var lstCountryDto = mapper.Map<List<CountryDto>>(Country.registros);
+        return new Pager<CountryDto>(lstCountryDto,Country.totalRegistros,countryParams.PageIndex,countryParams.PageSize,countryParams.Search);
     }
 
 
@@ -50,7 +53,7 @@ public class CountryController : BaseController
     {
         var Country = await unitOfWork.Countries.GetByIdAsync(id);
         if (Country == null){
-            return NotFound();
+            return NotFound(/*new ApiResponse(404,"El country solicitado no existe.")*/);
         }
         return this.mapper.Map<CountryDto>(Country);
     }

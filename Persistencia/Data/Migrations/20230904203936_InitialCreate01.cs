@@ -131,17 +131,11 @@ namespace Persistencia.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     IdGenderFk = table.Column<int>(type: "int", nullable: false),
                     IdPersonTypeFk = table.Column<int>(type: "int", nullable: false),
-                    IdRegionFk = table.Column<int>(type: "int", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: true)
+                    IdRegionFk = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Person", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Person_Country_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Country",
-                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Person_Gender_IdGenderFk",
                         column: x => x.IdGenderFk,
@@ -213,11 +207,6 @@ namespace Persistencia.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Person_CountryId",
-                table: "Person",
-                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person_IdGenderFk",
